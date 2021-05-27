@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patientdetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +55,32 @@ class AuthController extends Controller
 
 
     public function getDetails(Request $request){
+
         $user = $request->user();
-        dd($user->patientdetail);
+
+        return response()->json(
+                ['status' => 'success',
+                'patientFile' => $user->patientdetail]
+            ,200);
+
+    }
+
+    public function fillDetails(Request $request){
+
+       $user = $request->user();
+
+       $user->patientdetail()->updateOrCreate(
+           ['user_id' => $user->id], [
+           'fullName' => $request->fullName,
+           'age' => $request->age,
+           'sex' => $request->sex,
+           'NIF' => $request->NIF
+       ]
+       );
+
+        return response()->json(
+            ['status' => 'success',
+                'patientFile' => $user->patientdetail]
+            ,200);
     }
 }
