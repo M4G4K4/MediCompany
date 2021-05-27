@@ -51,4 +51,10 @@ class AuthController extends Controller
             ->json(['status' => 'unauthorized'],401);
 
     }
+
+
+    public function getDetails(Request $request){
+        $user = $request->user();
+        dd($user->patientdetail);
+    }
 }
