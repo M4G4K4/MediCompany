@@ -19,7 +19,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'api_token' => Str::random(60),
+            'api_token' => \Illuminate\Support\Str::random(60),
         ]);
 
         return response()->json(['status' => 'success', 'api_token' => $user->api_token]);
@@ -36,7 +36,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = \App\Models\User::where('email', $credentials['email'])->first();
-            $user->api_token = Str::random(60);
+            $user->api_token = \Illuminate\Support\Str::random(60);
             $user->save();
 
             return response()
