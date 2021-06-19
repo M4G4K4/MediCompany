@@ -22,4 +22,5 @@ Route::post('getDetails',[AuthController::class, 'getDetails'])->name('auth.getD
 Route::post('fillDetails',[AuthController::class, 'fillDetails'])->name('auth.fillDetails')->middleware('auth:api');
 
 Route::get('getAllPatients',[AuthController::class, 'getPatients'])->name('getPatients')->middleware('auth:api');
+
 Route::get('/view/{key}/{id}',[HomeController::class,'view'])->name('view');
