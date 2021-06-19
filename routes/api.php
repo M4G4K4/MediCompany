@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
@@ -21,3 +22,4 @@ Route::post('getDetails',[AuthController::class, 'getDetails'])->name('auth.getD
 Route::post('fillDetails',[AuthController::class, 'fillDetails'])->name('auth.fillDetails')->middleware('auth:api');
 
 Route::get('getAllPatients',[AuthController::class, 'getPatients'])->name('getPatients')->middleware('auth:api');
+Route::get('/view/{key}/{id}',[HomeController::class,'view'])->name('view');
