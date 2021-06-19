@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patientdetail;
-use http\Client\Curl\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
