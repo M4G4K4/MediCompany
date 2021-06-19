@@ -45,7 +45,8 @@ class AuthController extends Controller
                     [
                         'status' => 'success',
                         'api_token' => $user->api_token,
-                        'role' => $user->role
+                        'role' => $user->role,
+                        'id' => $user->id
                     ],200);
         }
 
