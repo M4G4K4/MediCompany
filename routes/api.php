@@ -19,3 +19,5 @@ Route::post('login',[AuthController::class, 'login'])->name('auth.login');
 
 Route::post('getDetails',[AuthController::class, 'getDetails'])->name('auth.getDetails')->middleware('auth:api');
 Route::post('fillDetails',[AuthController::class, 'fillDetails'])->name('auth.fillDetails')->middleware('auth:api');
+
+Route::get('getAllPatients',[AuthController::class, 'getPatients'])->name('getPatients')->middleware('auth:api');

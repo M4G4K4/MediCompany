@@ -44,7 +44,8 @@ class AuthController extends Controller
                 ->json(
                     [
                         'status' => 'success',
-                        'api_token' => $user->api_token
+                        'api_token' => $user->api_token,
+                        'role' => $user->role
                     ],200);
         }
 
@@ -83,4 +84,10 @@ class AuthController extends Controller
                 'patientFile' => $user->patientdetail]
             ,200);
     }
+
+    public function getPatients(Request $request){
+        $patients = User::where('role',0)->get();
+        return response()->json($patients);
+    }
+
 }
