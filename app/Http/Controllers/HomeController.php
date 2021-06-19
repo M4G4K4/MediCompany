@@ -34,7 +34,7 @@ class HomeController extends Controller
         $user = User::find($id);
 
         $details = $user->patientdetail;
-        dd($details);
+
         $decrypted = openssl_decrypt($details->NIF, 'AES_256_CBC', $key, 0);
 
         dd($decrypted);
