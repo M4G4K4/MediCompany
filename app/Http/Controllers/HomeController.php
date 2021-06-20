@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patientdetail;
 use App\Models\User;
+use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -35,10 +36,24 @@ class HomeController extends Controller
 
         $details = $user->patientdetail;
 
-        $decrypted = openssl_decrypt($details->NIF, 'aes-256-cbc', $key, 0);
+        $NIF = $this->decrypt($details->NIF,$key);
+        $fullName = $this->decrypt($details->fullName,$key);
+        $age = $this->decrypt($details->age,$key);
+        $sex = $this->decrypt($details->sex,$key);
 
-        dd($decrypted);
+        return view('view')
+            ->with('NIF',$NIF)
+            ->with('fullName',$fullName)
+            ->with('age',$age)
+            ->with('sex',$sex);
+
     }
+
+
+    public function decrypt($string,$key){
+        return exec('echo "'.$string.'"|openssl base64 -d|openssl enc -d -aes-256-cbc -k "'.$key.'"');
+    }
+
 
 
 }
