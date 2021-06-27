@@ -8,7 +8,7 @@
 
 1. Git clone this repository 
    ```
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/M4G4K4/MediCompany.git
    ```
 2. Run "composer update".
 
